@@ -39,7 +39,7 @@
 					}
 					else {
 						// throw new Exception("");
-						exit("Impossible d'accéder au dossier : '$dossier'.");
+						exit("Impossible d'accéder au dossier : '$chemin'.");
 					}
 				}
 			}
