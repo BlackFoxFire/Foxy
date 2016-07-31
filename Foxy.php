@@ -145,6 +145,10 @@
 		
 		// Analyse le template pour voir si des variables sont à remplacer
 		private function analyserVariables($template) {
+			$motif = "#\{\{\s*([a-zA-Z][a-zA-Z0-9_]*)\s*=\s*([a-zA-Z0-9_\.]+)\s*\}\}#";
+			
+			$template = preg_replace_callback($motif, array($this, 'declarerVariables'), $template);
+			
 			$motif = "#\{\{\s*([a-zA-Z][a-zA-Z0-9_]*)\s*(:html)?\s*\}\}#";
 			
 			$template = preg_replace_callback($motif, array($this, 'remplacerVariables'), $template);
@@ -154,6 +158,16 @@
 			$template = preg_replace_callback($motif, array($this, 'remplacerVariablesSpecials'), $template);
 			
 			return $template;
+		}
+		
+		// Définition d'une variable depuis le template
+		private function declarerVariables($matches) {
+			if(is_numeric($matches[2]))
+				$varTmp = $matches[2];
+			else
+				$varTmp = $this->analyserVariables("{{ " . $matches[2] . " }}");
+			
+			$this->variables[$matches[1]] = $varTmp;
 		}
 		
 		// Remplace dans le template des variables par leurs valeurs
@@ -177,8 +191,15 @@
 			
 			if(array_key_exists($tab[0], $this->variables)) {
 				
-				if(is_array($this->variables[$tab[0]]))
-					$valeur = $this->variables[$tab[0]][$tab[1]];
+				if(is_array($this->variables[$tab[0]])) {
+					if(is_numeric($tab[1])) {
+						$valeur = $this->variables[$tab[0]][$tab[1]];
+					}
+					else {
+						if(array_key_exists($tab[1], $this->variables))
+							$valeur = $this->variables[$tab[0]][$this->variables[$tab[1]]];
+					}
+				}
 				
 				if(is_object($this->variables[$tab[0]])) {
 					if(method_exists($this->variables[$tab[0]], $tab[1]))
