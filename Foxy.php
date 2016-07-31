@@ -401,3 +401,4 @@
 		}
 	
 	}
+	// Fin de la définission de la classe
