@@ -180,7 +180,7 @@
 			}
 			
 			if($this->afficherLesErreurs)
-				return "#NON DEFINIT '$matches[0]'#";
+				return "#NON DEFINIT '$matches[1]'#";
 			
 			return "";
 		}
@@ -215,7 +215,7 @@
 			}
 			
 			if($this->afficherLesErreurs)
-				return "#NON DEFINIT '$matches[0]'#";
+				return "#NON DEFINIT '$matches[1]'#";
 			
 			return "";
 		}
@@ -273,7 +273,7 @@
 			else {
 				if(!array_key_exists($matches[1], $this->variables)) {
 					if($this->afficherLesErreurs)
-					return "#NON DEFINIT '$matches[0]'#";
+					return "#NON DEFINIT '$matches[1]'#";
 					
 					return "";
 				}
@@ -295,7 +295,7 @@
 			if(!is_numeric($matches[1])) {
 				if(!array_key_exists($matches[1], $this->variables)) {
 					if($this->afficherLesErreurs)
-					return "#NON DEFINIT '$matches[0]'#";
+					return "#NON DEFINIT '$matches[1]'#";
 					
 					return "";
 				}
@@ -309,7 +309,7 @@
 			if(!is_numeric($matches[3])) {
 				if(!array_key_exists($matches[3], $this->variables)) {
 					if($this->afficherLesErreurs)
-					return "#NON DEFINIT '$matches[0]'#";
+					return "#NON DEFINIT '$matches[3]'#";
 					
 					return "";
 				}
@@ -416,7 +416,7 @@
 			}
 			
 			if($this->afficherLesErreurs)
-				return "#NON DEFINIT '$matches[0]'#";
+				return "#NON DEFINIT '$matches[1]'#";
 			
 			return "";
 		}
