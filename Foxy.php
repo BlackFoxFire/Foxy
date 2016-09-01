@@ -8,8 +8,11 @@
 	*
 	*/
 	
+	// Définition de l'espace de nom.
+	namespace Foxy;
+	
 	/* Définition de la classe */
-	final class Foxy {
+	class Foxy {
 		
 		// Chemain vers le dossier contenant les templates
 		private $dossierDesTemplates;
